@@ -56,6 +56,61 @@ header nav{
     margin-top: 23px;
 }
 
+/* Courses */
+#courses{
+    min-height: 600px;
+    background-color: #A8D0E6;
+}
+
+#information{
+    margin-bottom: 50px;
+}
+
+#information input{
+    margin-right: 50px
+}
+
+#courseName {
+    margin-bottom: 15px;
+}
+#courseName {
+    width: 50%;
+}
+
+#information button{
+    margin-top: 15px;
+    padding: .2rem;
+    border: 0.5rem solid #F76C6C; 
+    border-radius: 0.3rem;
+    font-size: .8rem;
+    background: #F76C6C;
+    color: white;
+}
+
+table {
+    width: 100%;
+}
+
+
+thead{
+    text-decoration: underline; 
+    color: #F76C6C;
+    font-size: 25px;
+}
+
+tbody{
+    text-decoration: none;
+}
+
+table button{
+    padding: .2rem;
+    border: 0.5rem solid #F76C6C; 
+    border-radius: 0.3rem;
+    font-size: .8rem;
+    background: #F76C6C;
+    color: white;
+}
+
 /* Footer */
 
 footer{

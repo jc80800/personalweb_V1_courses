@@ -28,8 +28,53 @@
         </header>
 
         <section id="courses">
-            
+            <div class="container">
+                <div id="information">
+                    <h1>Courses</h1>
+                    <form>
 
+                        <label>Name</label><br>
+                        <input type="text" placeholder="Name" id="courseName"><br>
+
+                        <label>Course ID</label>
+                        <input type="text" placeholder="Course ID" id="courseID">
+
+                        <label>Credits</label>
+                        <input type="number" id="courseCredit"><br>
+                        
+                    </form>
+                    
+                    <button type="submit" id="addCourse">Add Course</button>  
+                </div>
+
+                <div id="courseUI">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Course Name</th>
+                                <th>Course ID</th>
+                                <th>Credits</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Computer Science</th>
+                                <th>CS-101</th>
+                                <th>4</th>
+                                <th><button>Delete</button></th>
+                            </tr>
+                            <tr>
+                                <th>Computer Science</th>
+                                <th>CS-101</th>
+                                <th>4</th>
+                                <th><button>Delete</button></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
         </section>
 
         <footer>
