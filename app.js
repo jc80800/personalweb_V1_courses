@@ -10,18 +10,7 @@ class Courses {
 // UI Class: Handle UI Tasks
 class UI{
     static displayCourses(){
-        const storedCourses = [
-            {
-                name: 'Computer Science I ',
-                IDs: 'CS-101',
-                credit: 4
-            },
-            {
-                name: 'Computer Science II ',
-                IDs: 'CS-102',
-                credit: 4
-            }
-        ];
+        const storedCourses = [];
 
         const courses = storedCourses;
 
@@ -37,10 +26,20 @@ class UI{
         <th>${courses.name}</th>
         <th>${courses.IDs}</th>
         <th>${courses.credit}</th>
-        <th><button>delete</button></th>
+        <th><button class='delete'>delete</button></th>
         `;
 
         list.appendChild(row);
+    }
+
+    static clearField(){
+        document.querySelector('#myForm').reset();
+    }
+
+    static deleteCourse(target){
+        if(target.classList.contains('delete')){
+            target.parentElement.parentElement.remove();
+        }
     }
 }
 
@@ -50,5 +49,23 @@ class UI{
 document.addEventListener('DOMContentLoaded', UI.displayCourses);
 
 // Event: Add a Course
+document.querySelector('#addCourse').addEventListener('click', (e) => {
 
+    // Get form value
+    const name = document.querySelector('#courseName').value;
+    const IDs = document.querySelector('#courseID').value;
+    const credit = document.querySelector('#courseCredit').value;
+
+    // Instantiate a course
+    const course = new Courses(name, IDs, credit);
+
+    //Add course
+
+    UI.addCourseToList(course)
+
+    UI.clearField();
+});
 // Event: Remove a Course
+document.querySelector('#courses-list').addEventListener('click', (e) => {
+    UI.deleteCourse(e.target);
+})
