@@ -10,7 +10,7 @@ class Courses {
 // UI Class: Handle UI Tasks
 class UI{
     static displayCourses(){
-        const storedCourses = [];
+        const storedCourses = Store.getCourses();
 
         const courses = storedCourses;
 
@@ -41,9 +41,54 @@ class UI{
             target.parentElement.parentElement.remove();
         }
     }
+
+    static showAlert(){
+        const div = document.createElement('div');
+        div.className = 'alert';
+        div.appendChild(document.createTextNode('Please fill in all the blank'));
+        const information = document.querySelector('#information');
+        const form = document.querySelector('#myForm');
+        information.insertBefore(div, form);
+        
+        // Vanish in 3 seconds
+
+        setTimeout(() => document.querySelector('.alert').remove(), 3000);
+    }
 }
 
 // Store Class: Handles Storage
+class Store{
+    static getCourses(){
+        let course;
+        if (localStorage.getItem('courses') === null){
+            course = [];
+        } else {
+            course = JSON.parse(localStorage.getItem('courses'));
+        }
+
+        return course;
+    }
+
+    static addCourse(course){
+        const courses = Store.getCourses();
+        courses.push(course);
+
+        localStorage.setItem('courses', JSON.stringify(courses));
+    }
+
+    static removeCourse(IDs){
+        const courses = Store.getCourses();
+
+        courses.forEach((course, index) => {
+            if (course.IDs === IDs){
+                courses.splice(index, 1);
+            }
+        });
+
+        localStorage.setItem('courses', JSON.stringify(courses));
+
+    }
+}
 
 // Event: Display Courses
 document.addEventListener('DOMContentLoaded', UI.displayCourses);
@@ -56,16 +101,32 @@ document.querySelector('#addCourse').addEventListener('click', (e) => {
     const IDs = document.querySelector('#courseID').value;
     const credit = document.querySelector('#courseCredit').value;
 
-    // Instantiate a course
-    const course = new Courses(name, IDs, credit);
+    //Validate 
+    if (name == '' || IDs == '' || credit == ''){
+        UI.showAlert();
+    } else {
+        // Instantiate a course
+        const course = new Courses(name, IDs, credit);
 
-    //Add course
+        // Store the course
 
-    UI.addCourseToList(course)
+        Store.addCourse(course);
+        //Add course
 
-    UI.clearField();
+        UI.addCourseToList(course)
+
+        UI.clearField();
+    }
+
+
+    
 });
 // Event: Remove a Course
 document.querySelector('#courses-list').addEventListener('click', (e) => {
     UI.deleteCourse(e.target);
+
+    // Remove from Store
+    Store.removeCourse(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
+    
+
 })

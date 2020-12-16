@@ -111,6 +111,12 @@ table button{
     color: white;
 }
 
+.alert{
+    background-color: red;
+    display: inline;
+    padding-right: 10px;
+}
+
 /* Footer */
 
 footer{
